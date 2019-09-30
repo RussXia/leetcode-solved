@@ -1,5 +1,7 @@
 package com.xzy.leetcode;
 
+import com.xzy.common.ListNode;
+
 /**
  * @author xiazhengyue
  * @since 2019-02-19
