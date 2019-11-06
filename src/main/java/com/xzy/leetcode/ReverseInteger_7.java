@@ -1,18 +1,16 @@
 package com.xzy.leetcode;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReverseInteger_7 {
 
     public static void main(String[] args) {
-        System.out.println(reverseInteger(120));
-        System.out.println(reverseInteger(123));
-        System.out.println(reverseInteger(-123));
-        System.out.println(reverseInteger(0));
-        System.out.println(reverseInteger(1534236469));
-
+//        System.out.println(reverseInteger2(120));
+//        System.out.println(reverseInteger2(123));
+//        System.out.println(reverseInteger2(-123));
+//        System.out.println(reverseInteger2(0));
+        System.out.println(reverseInteger2(1534236469));
 
     }
 
@@ -23,9 +21,6 @@ public class ReverseInteger_7 {
      * @return
      */
     private static int reverseInteger(int x) {
-        if (x > 0 && x >> 31 != 0) {
-            return 0;
-        }
 
         boolean flag = x > 0;
         x = Math.abs(x);
@@ -45,7 +40,6 @@ public class ReverseInteger_7 {
         }
         return result;
     }
-
 
     public static int reverseInteger2(int x) {
         int result = 0;
