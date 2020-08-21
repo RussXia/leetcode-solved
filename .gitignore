@@ -12,3 +12,7 @@ Test2.txt
 java_pid40494.hprof.analysis/
 *.hprof
 ##/src/main/java/com/xzy/test/*
+*.classpath
+*.factorypath
+*.project
+*.settings/
