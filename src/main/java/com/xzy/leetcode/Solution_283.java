@@ -21,8 +21,8 @@ public class Solution_283 {
         }
         int insert = 0;
         for (int num : nums) {
-            if (num == 0) {
-                nums[insert++] = 0;
+            if (num != 0) {
+                nums[insert++] = num;
             }
         }
         for (int i = insert; i < nums.length; i++) {

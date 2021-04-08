@@ -1,7 +1,10 @@
 package com.xzy.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author xiazhengyue
@@ -25,5 +28,10 @@ public class Solution_217 {
             }
         }
         return false;
+    }
+
+    public static boolean containsDuplicate2(int[] nums) {
+        Set<Integer> seen = new HashSet<>();
+        return Arrays.stream(nums).anyMatch(num -> !seen.add(num));
     }
 }
