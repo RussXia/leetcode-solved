@@ -10,6 +10,12 @@ public class Solution_509 {
 
     }
 
+    /**
+     * dp(n) = dp(n-1) + dp(n-2)
+     *
+     * @param n
+     * @return
+     */
     public int fib(int n) {
         int start = 0, next = 1;
         if (n <= 1) {
