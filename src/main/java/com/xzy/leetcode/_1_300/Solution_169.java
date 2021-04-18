@@ -33,6 +33,7 @@ public class Solution_169 {
 
     /**
      * major元素出现次数超过n/2次，所以major元素和其他元素对掉(消消乐)，最后剩下的元素一定还是major
+     *
      * @param nums
      * @return
      */
