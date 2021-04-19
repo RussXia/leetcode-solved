@@ -8,9 +8,23 @@ public class Solution_26 {
 
     public static void main(String[] args) {
         int[] nums1 = {1, 1, 2};
-        System.out.println(removeDuplicates(nums1));
-        int[] nums2 = {1, 1, 2};
-        System.out.println(removeDuplicates2(nums2));
+        System.out.println(removeDuplicates3(nums1));
+        int[] nums2 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        System.out.println(removeDuplicates3(nums2));
+    }
+
+    public static int removeDuplicates3(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int i = 0;
+        for (int j = 0; j < nums.length; j++, i++) {
+            nums[i] = nums[j];
+            if (i > 0 && nums[i - 1] == nums[j]) {
+                i -= 1;
+            }
+        }
+        return i;
     }
 
     public static int removeDuplicates(int[] nums) {

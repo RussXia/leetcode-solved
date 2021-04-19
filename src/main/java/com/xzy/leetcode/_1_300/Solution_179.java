@@ -14,22 +14,22 @@ public class Solution_179 {
         {
             //43243 > 432  --> desc
             int[] nums = {432, 43243};
-            System.out.println(solution.largestNumber(nums));
+            System.out.println(solution.largestNumber2(nums));
 
             //457 > 45745  --> asc
             int[] nums1 = {457, 45745};
-            System.out.println(solution.largestNumber(nums1));
+            System.out.println(solution.largestNumber2(nums1));
 
             //451 < 45145  --> desc
             int[] nums2 = {451, 45145};
-            System.out.println(solution.largestNumber(nums2));
+            System.out.println(solution.largestNumber2(nums2));
 
             //5335 == 533553 --> flat
             int[] nums3 = {5335, 533553};
-            System.out.println(solution.largestNumber(nums3));
+            System.out.println(solution.largestNumber2(nums3));
 
             int[] num4 = {3, 341, 302, 5, 9};
-            System.out.println(solution.largestNumber(num4));
+            System.out.println(solution.largestNumber2(num4));
 
             int[] num5 = {0, 0};
             System.out.println(solution.largestNumber(num5));
@@ -40,32 +40,27 @@ public class Solution_179 {
         if (num == null || num.length == 0)
             return "";
 
-        // Convert int array to String array, so we can sort later on
-        String[] s_num = new String[num.length];
-        for (int i = 0; i < num.length; i++)
-            s_num[i] = String.valueOf(num[i]);
+        String[] str = new String[num.length];
+        for (int i = 0; i < num.length; i++) {
+            str[i] = String.valueOf(num[i]);
+        }
 
-        // Comparator to decide which string should come first in concatenation
-        Comparator<String> comp = new Comparator<String>() {
-            @Override
-            public int compare(String str1, String str2) {
-                String s1 = str1 + str2;
-                String s2 = str2 + str1;
-                return s2.compareTo(s1); // reverse order here, so we can do append() later
-            }
+        Comparator<String> comparator = (str1, str2) -> {
+            String temp1 = str1 + str2;
+            String temp2 = str2 + str1;
+            return temp2.compareTo(temp1);
         };
+        Arrays.sort(str, comparator);
 
-        Arrays.sort(s_num, comp);
-        // An extreme edge case by lc, say you have only a bunch of 0 in your int array
-        if (s_num[0].charAt(0) == '0')
+        //处理一下特殊情况
+        if (str[0].charAt(0) == '0')
             return "0";
 
         StringBuilder sb = new StringBuilder();
-        for (String s : s_num)
+        for (String s : str) {
             sb.append(s);
-
+        }
         return sb.toString();
-
     }
 
     public String largestNumber(int[] nums) {
