@@ -52,7 +52,7 @@ public class ArrayStack<E> {
         System.out.println(stack.push("Hello 1"));
         System.out.println(stack.push("Hello 2"));
         System.out.println(stack.push("Hello 3"));
-        System.out.println(stack.push("Hello 4"));
+        System.out.println(stack.push("Hello 5"));
 
         System.out.println(stack.pop());
         System.out.println(stack.pop());
