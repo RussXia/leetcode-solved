@@ -50,17 +50,4 @@ public class Solution_1609 {
         return true;
     }
 
-    private static boolean checkNode(TreeNode node, int level, int preVal) {
-        if ((level + node.val) % 2 == 0) {
-            return false;
-        }
-        if (level % 2 == 1 && node.val >= preVal) {
-            return false;
-        }
-        if (level % 2 == 0 && node.val <= preVal) {
-            return false;
-        }
-        return true;
-    }
-
 }

@@ -23,7 +23,7 @@ public class Solution_117 {
             root.right = new Node(3);
             root.right.right = new Node(7);
             Node connect = solution117.connect(root);
-            System.out.println();
+            System.out.println(connect);
         }
 
     }

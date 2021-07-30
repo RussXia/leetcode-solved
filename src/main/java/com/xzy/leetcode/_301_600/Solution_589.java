@@ -11,6 +11,7 @@ public class Solution_589 {
 
     public static void main(String[] args) {
         Node root = new Node(1);
+        System.out.println(root);
     }
 
     public List<Integer> preorder(Node root) {

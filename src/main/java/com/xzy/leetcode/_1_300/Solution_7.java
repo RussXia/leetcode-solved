@@ -11,6 +11,7 @@ public class Solution_7 {
 //        System.out.println(reverseInteger2(-123));
 //        System.out.println(reverseInteger2(0));
         System.out.println(reverseInteger2(1534236469));
+        System.out.println(reverseInteger(1534236469));
 
     }
 

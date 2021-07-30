@@ -8,8 +8,6 @@ import com.xzy.common.TreeNode;
  */
 public class Solution_979 {
 
-    private static int moves = 0;
-
     public static void main(String[] args) {
         TreeNode treeNode = new TreeNode(4);
         treeNode.left = new TreeNode(0);

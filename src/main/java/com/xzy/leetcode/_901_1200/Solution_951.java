@@ -41,18 +41,4 @@ public class Solution_951 {
                         && flipEquiv(root1.right, root2.right)
         );
     }
-
-    private static boolean checkNodeNum(TreeNode root1, TreeNode root2) {
-        int leafNode1 = 0;
-        if (root1.left != null)
-            leafNode1++;
-        if (root1.right != null)
-            leafNode1++;
-        int leafNode2 = 0;
-        if (root2.left != null)
-            leafNode2++;
-        if (root2.right != null)
-            leafNode2++;
-        return leafNode1 == leafNode2;
-    }
 }

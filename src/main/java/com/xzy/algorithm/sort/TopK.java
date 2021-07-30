@@ -1,13 +1,11 @@
 package com.xzy.algorithm.sort;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.stream.Collectors;
 
 /**
@@ -16,8 +14,6 @@ import java.util.stream.Collectors;
  */
 public class TopK {
     private Map<String, Long> map;
-
-    private List<String> list = new ArrayList<>();
 
     private PriorityQueue<Map.Entry<String, Long>> queue;
 

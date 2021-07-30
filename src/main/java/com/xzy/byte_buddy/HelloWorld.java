@@ -15,7 +15,7 @@ public class HelloWorld {
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
 
-//        helloWorld();
+       helloWorld();
 
         customNameStrategy();
     }

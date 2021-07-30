@@ -11,6 +11,7 @@ public class Solution_4 {
         int[] nums2 = {2};
         double value = findMedianSortedArrays(nums1, nums2);
         System.out.println(value);
+        System.out.println("Hello World");
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {

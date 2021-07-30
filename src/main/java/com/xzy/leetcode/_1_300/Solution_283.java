@@ -32,23 +32,23 @@ public class Solution_283 {
 //        recursiveMoveZeroes(nums, 0);
     }
 
-    private static void recursiveMoveZeroes(int[] nums, int start) {
-        if (start >= nums.length - 1) {
-            return;
-        }
-        if (nums[start] != 0) {
-            recursiveMoveZeroes(nums, start + 1);
-        } else {
-            //如果为0，找寻后继不为0的元素，替换过来
-            for (int i = start + 1; i < nums.length; i++) {
-                if (nums[i] != 0) {
-                    int temp = nums[start];
-                    nums[start] = nums[i];
-                    nums[i] = temp;
-                    break;
-                }
-            }
-            recursiveMoveZeroes(nums, start + 1);
-        }
-    }
+    // private static void recursiveMoveZeroes(int[] nums, int start) {
+    //     if (start >= nums.length - 1) {
+    //         return;
+    //     }
+    //     if (nums[start] != 0) {
+    //         recursiveMoveZeroes(nums, start + 1);
+    //     } else {
+    //         //如果为0，找寻后继不为0的元素，替换过来
+    //         for (int i = start + 1; i < nums.length; i++) {
+    //             if (nums[i] != 0) {
+    //                 int temp = nums[start];
+    //                 nums[start] = nums[i];
+    //                 nums[i] = temp;
+    //                 break;
+    //             }
+    //         }
+    //         recursiveMoveZeroes(nums, start + 1);
+    //     }
+    // }
 }

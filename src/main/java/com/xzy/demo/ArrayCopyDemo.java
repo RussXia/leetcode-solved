@@ -9,29 +9,30 @@ import com.xzy.common.Person;
 public class ArrayCopyDemo {
 
     public static void main(String[] args) {
+
         test2();
     }
 
-    private static void test1() {
-        String[] st = {"A", "B", "C", "D", "E"};
-        String[] dt = new String[5];
-        System.arraycopy(st, 0, dt, 0, 5);
+    // private static void test1() {
+    //     String[] st = {"A", "B", "C", "D", "E"};
+    //     String[] dt = new String[5];
+    //     System.arraycopy(st, 0, dt, 0, 5);
 
-        //改变dt的值
-        dt[3] = "M";
-        dt[4] = "V";
+    //     //改变dt的值
+    //     dt[3] = "M";
+    //     dt[4] = "V";
 
-        System.out.println("两个数组地址是否相同：" + (st == dt)); //false
+    //     System.out.println("两个数组地址是否相同：" + (st == dt)); //false
 
-        for (String str : st) {
-            System.out.print(" " + str + " ");   // A  B  C  D  E
+    //     for (String str : st) {
+    //         System.out.print(" " + str + " ");   // A  B  C  D  E
 
-        }
-        System.out.println();
-        for (String str : dt) {
-            System.out.print(" " + str + " ");   // A  B  C  M  V
-        }
-    }
+    //     }
+    //     System.out.println();
+    //     for (String str : dt) {
+    //         System.out.print(" " + str + " ");   // A  B  C  M  V
+    //     }
+    // }
 
     private static void test2() {
         Person[] source = {new Person("hhh", 1), new Person("qqq", 2), new Person("eee", 3)};
