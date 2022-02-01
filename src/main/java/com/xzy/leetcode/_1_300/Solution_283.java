@@ -11,7 +11,7 @@ public class Solution_283 {
     public static void main(String[] args) {
         int[] nums = {0, 1, 0, 3, 12};
 
-        moveZeroes(nums);
+        moveZeroes2(nums);
         System.out.println(JSON.toJSONString(nums));
     }
 
@@ -30,6 +30,19 @@ public class Solution_283 {
         }
 
 //        recursiveMoveZeroes(nums, 0);
+    }
+
+    public static void moveZeroes2(int[] nums) {
+        int left = 0, right = 0;
+        while (right < nums.length) {
+            if (nums[right] != 0) {
+                int tmp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tmp;
+                left++;
+            }
+            right++;
+        }
     }
 
     // private static void recursiveMoveZeroes(int[] nums, int start) {
