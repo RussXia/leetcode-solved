@@ -12,8 +12,21 @@ public class Solution_876 {
         head.next.next = node3;
         head.next.next.next = node4;
         head.next.next.next.next = node5;
-        System.out.println(middleNode(head).val);
+        System.out.println(middleNode2(head).val);
 
+    }
+
+    public static ListNode middleNode2(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if(fast !=null && fast.next != null) {
+            return slow.next;
+        }
+        return slow;
     }
 
     public static ListNode middleNode(ListNode head) {

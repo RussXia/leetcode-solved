@@ -13,6 +13,12 @@ public class ListNode {
         val = x;
     }
 
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
+
     public static void main(String[] args) {
         ListNode node = new ListNode(1);
         ListNode head = node;

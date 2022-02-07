@@ -18,9 +18,38 @@ public class Solution_19 {
         list.next.next = new ListNode(3);
         list.next.next.next = new ListNode(4);
         list.next.next.next.next = new ListNode(5);
-        System.out.println(JSON.toJSONString(removeNthFromEnd(list, 2)));
+        System.out.println(JSON.toJSONString(removeNthFromEnd3(list, 2)));
         ListNode list2 = new ListNode(1);
-        System.out.println(JSON.toJSONString(removeNthFromEnd2(list2, 1)));
+        //list2.next = new ListNode(2);
+        //list2.next.next = new ListNode(3);
+        System.out.println(JSON.toJSONString(removeNthFromEnd3(list2, 1)));
+    }
+
+
+    /**
+     * two pointer
+     *
+     * @param head
+     * @param n
+     * @return
+     */
+    public static ListNode removeNthFromEnd3(ListNode head, int n) {
+        ListNode fakeHead = new ListNode(0, head);
+        //two pointer
+        ListNode fast = head;
+        ListNode slow = fakeHead;
+        //fast fist move n-1 step
+        for (int i = 1; i < n; i++) {
+            fast = fast.next;
+        }
+        //both move fast and slow
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        //remove node after slow
+        slow.next = slow.next.next;
+        return fakeHead.next;
     }
 
     public static ListNode removeNthFromEnd2(ListNode head, int n) {
