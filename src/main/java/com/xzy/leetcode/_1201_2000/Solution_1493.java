@@ -1,4 +1,4 @@
-package com.xzy.leetcode._1201_;
+package com.xzy.leetcode._1201_2000;
 
 import java.util.Deque;
 import java.util.LinkedList;
