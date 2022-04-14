@@ -2,6 +2,8 @@ package com.xzy.demo;
 
 import com.xzy.common.Person;
 
+import javax.xml.bind.annotation.XmlList;
+
 /**
  * @author xiazhengyue
  * @since 2021-04-06
@@ -34,6 +36,7 @@ public class ArrayCopyDemo {
     //     }
     // }
 
+    @CustomAnnotation("test")
     private static void test2() {
         Person[] source = {new Person("hhh", 1), new Person("qqq", 2), new Person("eee", 3)};
         Person[] target = new Person[3];

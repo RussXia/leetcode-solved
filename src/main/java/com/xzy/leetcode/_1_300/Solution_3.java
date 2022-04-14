@@ -9,23 +9,44 @@ import java.util.Set;
 public class Solution_3 {
 
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
-        String str1 = "abcabcbb";
+        //String str1 = "aabaab!bb";
+        //String str1 = "abcabcbb";
+        //String str1 = "";
+        String str1 = "bbbbb";
+        //String str1 = "pwwkew";
+        //String str1 = "dvdf";
         System.out.println(lengthOfLongestSubstring2(str1));
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
+        System.out.println(lengthOfLongestSubstring3(str1));
     }
 
-    /**
-     * @param s
-     * @return
-     */
+
+    public static int lengthOfLongestSubstring3(String s) {
+        //ascii码取值范围
+        int[] dict = new int[256];
+
+        int max = 0, start = 0, end = 0;
+        while (end < s.length()) {
+            if (dict[s.charAt(end)] > 0 && dict[s.charAt(end)] > start) {
+                max = Math.max((end - start), max);
+                start = dict[s.charAt(end)];
+                dict[s.charAt(end)] = end + 1;
+                end++;
+            } else {
+                max = Math.max((end - start + 1), max);
+                dict[s.charAt(end)] = end + 1;
+                end++;
+            }
+        }
+        return max;
+    }
+
+
     public static int lengthOfLongestSubstring2(String s) {
         int[] m = new int[256];
         int res = 0, left = 0;
         for (int i = 0; i < s.length(); ++i) {
             if (m[s.charAt(i)] == 0 || m[s.charAt(i)] < left) {
-                res = res > (i - left + 1) ? res : (i - left + 1);
+                res = Math.max(res, (i - left + 1));
             } else {
                 left = m[s.charAt(i)];
             }
