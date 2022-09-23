@@ -36,7 +36,10 @@ public class NettyServer {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
-                                    new TimeProtocolHandler(), new EchoProtocolHandler(), new DiscardProtocolHandler());
+                                    new TimeProtocolHandler()
+                                    , new EchoProtocolHandler()
+                                    , new DiscardProtocolHandler()
+                            );
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)          // (5)
@@ -56,7 +59,7 @@ public class NettyServer {
     }
 
     public static void main(String[] args) throws Exception {
-        int port = 8080;
+        int port = 9527;
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         }

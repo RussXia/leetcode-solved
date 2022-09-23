@@ -1,5 +1,6 @@
 package com.xzy.netty.client;
 
+import com.xzy.netty.client.decode.TimeDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -18,7 +19,7 @@ public class TimeClient {
 
     public static void main(String[] args) throws InterruptedException {
         String host = "127.0.0.1";
-        int port = 8080;
+        int port = 9527;
 
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -29,7 +30,10 @@ public class TimeClient {
             b.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new TimeClientHandler());
+                    ch.pipeline().addLast(
+                            new TimeDecoder(),
+                            new TimeClientHandler()
+                            );
                 }
             });
             // Start the client.

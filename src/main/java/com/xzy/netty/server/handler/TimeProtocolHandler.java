@@ -18,7 +18,7 @@ public class TimeProtocolHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         final ByteBuf time = ctx.alloc().buffer(4);
-        int temp = (int) System.currentTimeMillis();
+        int temp = (int) (System.currentTimeMillis()/1000L - 2208988800L);
         log.info("channel activated!write int:{}", temp);
         time.writeInt(temp);
 
