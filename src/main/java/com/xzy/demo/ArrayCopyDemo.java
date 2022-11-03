@@ -2,8 +2,6 @@ package com.xzy.demo;
 
 import com.xzy.common.Person;
 
-import javax.xml.bind.annotation.XmlList;
-
 /**
  * @author xiazhengyue
  * @since 2021-04-06
