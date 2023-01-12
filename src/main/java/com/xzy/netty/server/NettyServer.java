@@ -2,6 +2,7 @@ package com.xzy.netty.server;
 
 import com.xzy.netty.server.handler.DiscardProtocolHandler;
 import com.xzy.netty.server.handler.EchoProtocolHandler;
+import com.xzy.netty.server.handler.TimeProtocol2Handler;
 import com.xzy.netty.server.handler.TimeProtocolHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -11,6 +12,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 /**
  * User: RuzzZZ
@@ -35,10 +38,13 @@ public class NettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+                            ch.pipeline().addLast(new StringDecoder());
                             ch.pipeline().addLast(
-                                    new TimeProtocolHandler()
-                                    , new EchoProtocolHandler()
-                                    , new DiscardProtocolHandler()
+                                    //new TimeProtocolHandler()
+                                    new TimeProtocol2Handler()
+                                    // new EchoProtocolHandler()
+                                    //, new DiscardProtocolHandler()
                             );
                         }
                     })

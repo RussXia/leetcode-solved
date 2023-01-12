@@ -2,6 +2,7 @@ package com.xzy.netty.server.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,10 @@ public class EchoProtocolHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        ChannelId channelId = ctx.channel().id();
+        System.out.println(channelId.asLongText());
+        System.out.println(channelId.asShortText());
+
         ByteBuf in = (ByteBuf) msg;
         log.info(in.toString(CharsetUtil.UTF_8));
 //        in.clear();

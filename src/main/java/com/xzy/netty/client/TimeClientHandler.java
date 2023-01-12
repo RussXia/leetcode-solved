@@ -1,11 +1,10 @@
 package com.xzy.netty.client;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Date;
 
 /**
  * User: RuzzZZ
@@ -15,31 +14,19 @@ import java.util.Date;
 @Slf4j
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
-    private ByteBuf buf;
-
     @Override
-    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        buf = ctx.alloc().buffer(4);
-    }
-
-    @Override
-    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        buf.release(); // (1)
-        buf = null;
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        ByteBuf msg;
+        for (int i = 0; i < 100; i++) {
+            msg = Unpooled.copiedBuffer("QUERY TIME ORDER\r\n".getBytes());
+            ctx.writeAndFlush(msg);
+        }
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ByteBuf m = (ByteBuf) msg; // (1)
-        try {
-            long read = m.readInt();
-            log.info("read data:{}", read);
-            long currentTimeMillis = (read + 2208988800L) * 1000L;
-            log.info("date:{}", new Date(currentTimeMillis));
-            ctx.close();
-        } finally {
-            m.release();
-        }
+        String result = (String) msg;
+        System.out.println("The time client receive time : " + result);
     }
 
     @Override
