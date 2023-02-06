@@ -1,11 +1,11 @@
 package com.xzy.netty.server.handler;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Objects;
 
 /**
  * User: RuzzZZ
@@ -15,17 +15,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EchoProtocolHandler extends ChannelInboundHandlerAdapter {
 
+    //@Override
+    //public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    //    ctx.writeAndFlush("hello,channel_active!\r\n");
+    //}
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ChannelId channelId = ctx.channel().id();
-        System.out.println(channelId.asLongText());
-        System.out.println(channelId.asShortText());
+        //ChannelId channelId = ctx.channel().id();
+        //log.info("channelId.asLongText:{},channelId.asShortText:{}", channelId.asLongText(), channelId.asShortText());
 
-        ByteBuf in = (ByteBuf) msg;
-        log.info(in.toString(CharsetUtil.UTF_8));
-//        in.clear();
-//        in.writeBytes("Hello".getBytes());
-        ctx.writeAndFlush(in);
+        String req = (String) msg;
+        log.info("receive request,req:{}", req);
+        if (Objects.equals("exit", req)) {
+            ctx.close();
+        }
+        ctx.writeAndFlush("hello," + req + "\r\n");
     }
 
     @Override
