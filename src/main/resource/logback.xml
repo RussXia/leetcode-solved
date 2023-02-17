@@ -8,8 +8,8 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    <logger name="io.netty" level="INFO"/>
-    <root level="info">
+    <logger name="io.netty" level="DEBUG"/>
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
