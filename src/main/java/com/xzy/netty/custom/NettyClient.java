@@ -12,9 +12,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
-import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.logging.ByteBufFormat;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 
 import java.util.concurrent.Executors;
@@ -37,19 +38,21 @@ public class NettyClient {
         EventLoopGroup worker = new NioEventLoopGroup();
         try {
             Bootstrap bootstrap = new Bootstrap();
-            bootstrap.group(worker).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, true).handler(new ChannelInitializer<SocketChannel>() {
-                @Override
-                protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new NettyMessageDecoder(1024 * 1024, 0, 4, 0, 4));
-                    ch.pipeline().addLast(new LengthFieldPrepender(4));
-                    ch.pipeline().addLast(new NettyMessageEncoder());
-                    ch.pipeline().addLast(new ReadTimeoutHandler(5));
-                    ch.pipeline().addLast(new LoginAuthReqHandler());
-                    ch.pipeline().addLast(new HeartBeatReqHandler());
-
-
-                }
-            });
+            bootstrap.group(worker)
+                    .channel(NioSocketChannel.class)
+                    .option(ChannelOption.SO_KEEPALIVE, true)
+                    .handler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new LoggingHandler(LogLevel.INFO, ByteBufFormat.HEX_DUMP));
+                            ch.pipeline().addLast(new NettyMessageDecoder(1024 * 1024, 0, 4, 0, 4));
+                            ch.pipeline().addLast(new LengthFieldPrepender(4));
+                            ch.pipeline().addLast(new NettyMessageEncoder());
+                            ch.pipeline().addLast(new ReadTimeoutHandler(5));
+                            ch.pipeline().addLast(new LoginAuthReqHandler());
+                            ch.pipeline().addLast(new HeartBeatReqHandler());
+                        }
+                    });
             ChannelFuture future = bootstrap.connect(host, port).sync();
             future.channel().closeFuture().sync();
         } finally {
