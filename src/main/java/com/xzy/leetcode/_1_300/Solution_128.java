@@ -1,5 +1,8 @@
 package com.xzy.leetcode._1_300;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Solution_128 {
@@ -8,7 +11,26 @@ public class Solution_128 {
     public static void main(String[] args) {
         int[] nums = {100, 4, 200, 1, 3, 2};
 //        System.out.println(longestConsecutive(nums));
-        System.out.println(longestConsecutive2(nums));
+        System.out.println(longestConsecutive3(nums));
+    }
+
+    public static int longestConsecutive3(int[] nums) {
+        if (nums.length == 0 || nums.length == 1) {
+            return nums.length;
+        }
+        Arrays.sort(nums);
+        int max = 0;
+        int count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] - nums[i - 1] == 1) {
+                count++;
+            } else if (nums[i] - nums[i - 1] > 1) {
+                max = Math.max(count, max);
+                count = 1;
+            }
+        }
+        max = Math.max(count, max);
+        return max;
     }
 
     public static int longestConsecutive(int[] nums) {

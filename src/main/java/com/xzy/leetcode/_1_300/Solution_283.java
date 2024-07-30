@@ -15,6 +15,19 @@ public class Solution_283 {
         System.out.println(JSON.toJSONString(nums));
     }
 
+    public static void moveZeroes3(int[] nums) {
+        int left = 0, right = 0;
+        while (right < nums.length) {
+            if (nums[right] != 0) {
+                int tmp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tmp;
+                left++;
+            }
+            right++;
+        }
+    }
+
     public static void moveZeroes(int[] nums) {
         if (nums == null || nums.length == 0) {
             return;
