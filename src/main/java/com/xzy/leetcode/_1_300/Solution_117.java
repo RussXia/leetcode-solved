@@ -4,6 +4,7 @@ import com.xzy.common.Node;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author xiazhengyue
@@ -36,17 +37,20 @@ public class Solution_117 {
         queue.offer(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            Node next = null;
+            Node listNode = null;
             for (int i = 0; i < size; i++) {
-                Node node = queue.pollFirst();
-                node.next = next;
-                next = node;
-                if (next.right != null) {
-                    queue.offer(next.right);
+                Node node = queue.poll();
+                if (node.left!=null) {
+                    queue.add(node.left);
                 }
-                if (next.left != null) {
-                    queue.offer(next.left);
+                if (node.right!=null) {
+                    queue.add(node.right);
                 }
+                // 跳过第一个元素，第一次用来初始化listNode
+                if (i != 0) {
+                    listNode.next = node;
+                }
+                listNode = node;
             }
         }
         return root;

@@ -13,6 +13,21 @@ public class Solution_26 {
         System.out.println(removeDuplicates3(nums2));
     }
 
+    public static int removeDuplicates4(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int fast = 1, slow = 1;
+        while (fast < nums.length) {
+            if (nums[fast] != nums[fast - 1]) {
+                nums[slow] = nums[fast];
+                slow++;
+            }
+            fast++;
+        }
+        return slow;
+    }
+
     public static int removeDuplicates3(int[] nums) {
         if (nums.length == 0) {
             return 0;

@@ -2,10 +2,7 @@ package com.xzy.leetcode._1_300;
 
 import com.xzy.common.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @author xiazhengyue
@@ -23,33 +20,47 @@ public class Solution_102 {
         System.out.println(levelOrder(treeNode));
     }
 
-    public static List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> levelOrder = new ArrayList<>();
-        if(root == null){
-            return levelOrder;
+    public static List<List<Integer>> levelOrder2(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
         }
-
+        List<List<Integer>> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        queue.add(root);
         while (!queue.isEmpty()) {
-            //每层遍历的结果和需要遍历的长度
-            List<Integer> levelNode = new ArrayList<>();
             int size = queue.size();
-            //取前n个元素，前n个元素是同一层的
+            List<Integer> levelList = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                levelNode.add(node.val);
-                //将当前节点的两个字节点压入队列尾部
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
+                TreeNode treeNode = queue.poll();
+                levelList.add(treeNode.val);
+                Optional.ofNullable(treeNode.left).ifPresent(queue::add);
+                Optional.ofNullable(treeNode.right).ifPresent(queue::add);
             }
-            levelOrder.add(levelNode);
+            result.add(levelList);
         }
-        return levelOrder;
+        return result;
+    }
+
+
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> levelOrderList = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            List<Integer> orderList = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode treeNode = queue.poll();
+                orderList.add(treeNode.val);
+                Optional.ofNullable(treeNode.left).ifPresent(queue::add);
+                Optional.ofNullable(treeNode.right).ifPresent(queue::add);
+            }
+            levelOrderList.add(orderList);
+        }
+        return levelOrderList;
     }
 
 }

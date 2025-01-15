@@ -2,6 +2,9 @@ package com.xzy.leetcode._1_300;
 
 import com.xzy.common.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author xiazhengyue
  * @since 2021-04-01
@@ -20,6 +23,30 @@ public class Solution_114 {
         solution.flatten(root);
         System.out.println();
     }
+
+    public void flatten2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        List<TreeNode> list = new ArrayList<>();
+        preorder(root, list);
+        for (int i = 1; i < list.size(); i++) {
+            TreeNode prev = list.get(i - 1);
+            TreeNode current = list.get(i);
+            prev.left = null;
+            prev.right = current;
+        }
+    }
+
+    private static void preorder(TreeNode root, List<TreeNode> preorderList) {
+        if (root == null) {
+            return;
+        }
+        preorderList.add(root);
+        preorder(root.left, preorderList);
+        preorder(root.right, preorderList);
+    }
+
 
     public void flatten(TreeNode root) {
         if (root == null) {
