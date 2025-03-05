@@ -10,6 +10,7 @@ public class LeetCode_42 {
     /**
      * max_left[i] = Math.max(max_left[i-1],height[i-1])
      * max_right[i] = Math.max(max_right[i+1],height[i+1])
+     *
      */
     public int trap4(int[] height) {
         int[] max_left = new int[height.length];
